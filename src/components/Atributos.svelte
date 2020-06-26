@@ -62,6 +62,10 @@
             {atributo.fields['Nombre']}
           </span>
 
+          <p class="msf-atributo-description">
+            {atributo.fields['Descripcion']}
+          </p>
+
           <div class="msf-atributo-price">${atributo.fields['Precio']}</div>
         </label>
       {/each}
