@@ -9,6 +9,7 @@
   import Step2 from "./steps/Step2.svelte";
   import Step3 from "./steps/Step3.svelte";
   import Step4 from "./steps/Step4.svelte";
+  import Step5 from "./steps/Step5.svelte";
 
   // Stores
   import {
@@ -46,7 +47,13 @@
   }
 
   function nextStep() {
-    if (checkInputs()) $currentStep += 1;
+    if (checkInputs()) {
+      $currentStep += 1;
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
   }
 
   function handleInput(e) {
@@ -57,23 +64,32 @@
 
     // Guardar item seleccionado
     if (key === "Atributos") {
-      selectedStore.modifyAtributos(key, data);
+      selectedStore.modifyAtributo(data);
       return;
+    } else {
+      selectedStore.modify(key, data.fields["Nombre"]);
     }
 
-    selectedStore.modify(key, data.fields["Nombre"]);
-
-    if (key === "Fraccionamientos")
+    if (key === "Fraccionamientos") {
       // Guardar viviendas disponibles
       $viviendasDisponibles = data.fields["Viviendas"];
 
-    if (key === "Viviendas")
+      // Borrar viviendas y atributos seleccionados
+      selectedStore.delete("Viviendas");
+      selectedStore.delete("Atributos");
+    }
+
+    if (key === "Viviendas") {
       // Guardar atributos disponibles
       $atributosDisponibles = data.fields["Atributos"];
+
+      // Borrar viviendas y atributos seleccionados
+      selectedStore.delete("Atributos");
+    }
   }
 </script>
 
-<ProgressBar {steps} currentStep={$currentStep} />
+<ProgressBar {steps} />
 
 {#if $currentStep === 1}
   <Step1 />
@@ -83,10 +99,8 @@
   <Step3 name="Viviendas" on:select={handleInput} />
 {:else if $currentStep === 4}
   <Step4 name="Atributos" on:select={handleInput} />
+{:else if $currentStep === 5}
+  <Step5 />
 {/if}
 
-<NextButton
-  {steps}
-  currentStep={$currentStep}
-  on:nextstep={nextStep}
-  {missingInputs} />
+<NextButton {steps} {missingInputs} on:nextstep={nextStep} />

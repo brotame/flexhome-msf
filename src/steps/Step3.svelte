@@ -10,13 +10,14 @@
 
   // Components
   import Loader from "../components/Loader.svelte";
+  import ErrorMessage from "../components/ErrorMessage.svelte";
   import Viviendas from "../components/Viviendas.svelte";
 
   // Exports
   export let name;
 </script>
 
-<div class="msf-content" transition:fade>
+<div class="msf-content" in:fade={{ duration: 250 }}>
 
   <!-- Header -->
   <div class="msf-header">
@@ -30,7 +31,7 @@
   {:then viviendas}
     <Viviendas {name} {viviendas} on:select />
   {:catch error}
-    <h2>Algo fue mal, por favor, intentalo de nuevo.</h2>
+    <ErrorMessage />
   {/await}
 
 </div>

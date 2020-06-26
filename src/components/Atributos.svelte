@@ -1,7 +1,6 @@
 <script>
   // Svelte
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
 
   // Stores
   import { selectedStore } from "../msf-store";
@@ -22,7 +21,8 @@
       );
 
       if (index >= 0) tipos[index].atributos.push(atributo);
-      else tipos.push({ nombre: atributo.fields["Tipo"], atributos: [] });
+      else
+        tipos.push({ nombre: atributo.fields["Tipo"], atributos: [atributo] });
     });
   }
 
@@ -30,10 +30,7 @@
 </script>
 
 {#each tipos as tipo, index}
-  <div
-    class="msf-atributos-wrap"
-    clas:last={index === tipos.length - 1}
-    transition:fade>
+  <div class="msf-atributos-wrap" clas:last={index === tipos.length - 1}>
 
     <h3>{tipo.nombre}</h3>
 
@@ -50,7 +47,6 @@
             id={atributo.id}
             name={tipo.nombre}
             value={atributo.fields['Nombre']}
-            required="required"
             class="w-form-formradioinput msf-hidden w-radio-input"
             bind:group={tipo.selected}
             on:input={() => {
@@ -66,7 +62,7 @@
             {atributo.fields['Nombre']}
           </span>
 
-          <div class="msf-atributo-price">{atributo.fields['Precio']}</div>
+          <div class="msf-atributo-price">${atributo.fields['Precio']}</div>
         </label>
       {/each}
     </div>

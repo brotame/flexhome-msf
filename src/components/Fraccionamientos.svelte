@@ -1,7 +1,6 @@
 <script>
   // Svelte
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
 
   // Stores
   import { selectedStore } from "../msf-store";
@@ -13,7 +12,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<div class="msf-fraccionamientos" transition:fade>
+<div class="msf-fraccionamientos">
 
   {#each fraccionamientos as fraccionamiento, index (fraccionamiento.id)}
     <label

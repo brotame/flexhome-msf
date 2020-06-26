@@ -1,7 +1,6 @@
 <script>
   // Svelte
   import { createEventDispatcher, onMount } from "svelte";
-  import { fade } from "svelte/transition";
 
   // Stores
   import { selectedStore } from "../msf-store";
@@ -18,7 +17,7 @@
   });
 </script>
 
-<div class="msf-viviendas" transition:fade>
+<div class="msf-viviendas">
 
   {#each viviendas as vivienda}
     <label

@@ -15,25 +15,28 @@ export const selectedStore = {
   modify: (key, data) => {
     selected.update((items) => ({ ...items, [key]: data }));
   },
-  modifyAtributos: (key, data) => {
+  delete: (key) => {
+    selected.update((items) => {
+      delete items[key];
+      return items;
+    });
+  },
+  modifyAtributo: (data) => {
     selected.update((items) => {
       const atributos = {
-        ...items[key],
+        ...items['Atributos'],
         [data.fields['Tipo']]: data.fields,
       };
 
-      return { ...items, [key]: atributos };
+      return { ...items, ['Atributos']: atributos };
+    });
+  },
+  deleteAtributo: (key) => {
+    selected.update((items) => {
+      delete items['Atributos'][key];
+      return items;
     });
   },
 };
 
-/* const selections = {
-  fraccionamiento: 'Fraccionamiento A',
-  vivienda: 'Inland',
-  atributos: {
-    'Flex Room': {
-      nombre: "Básico",
-      precio: "$1000"
-    }
-  }
-};*/
+export const fetchError = writable(false);

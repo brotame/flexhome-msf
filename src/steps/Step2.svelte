@@ -7,13 +7,14 @@
 
   // Components
   import Loader from "../components/Loader.svelte";
+  import ErrorMessage from "../components/ErrorMessage.svelte";
   import Fraccionamientos from "../components/Fraccionamientos.svelte";
 
   // Exports
   export let name;
 </script>
 
-<div class="msf-content" transition:fade>
+<div class="msf-content" in:fade={{ duration: 250 }}>
 
   <!-- Header -->
   <div class="msf-header">
@@ -27,7 +28,7 @@
   {:then fraccionamientos}
     <Fraccionamientos {name} {fraccionamientos} on:select />
   {:catch error}
-    <h2>Algo fue mal, por favor, intentalo de nuevo.</h2>
+    <ErrorMessage />
   {/await}
 
 </div>

@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition";
 </script>
 
-<div class="msf-content" transition:fade>
+<div class="msf-content" in:fade={{ duration: 250 }}>
 
   <div class="msf-header">
     <h1>¿Cuanto cuesta tu casa perfecta?</h1>
