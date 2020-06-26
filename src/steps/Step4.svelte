@@ -6,7 +6,7 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { atributosDisponibles } from "../msf-store";
+  import { availableAtributos } from "../msf-store";
 
   // Components
   import Loader from "../components/Loader.svelte";
@@ -26,7 +26,7 @@
   </div>
 
   <!-- Atributos -->
-  {#await getItems({ base: 'Atributos', records: $atributosDisponibles })}
+  {#await getItems({ base: 'Atributos', records: $availableAtributos })}
     <Loader />
   {:then atributos}
     <Atributos {name} {atributos} on:select />

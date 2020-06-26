@@ -6,7 +6,7 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { viviendasDisponibles } from "../msf-store";
+  import { availableViviendas } from "../msf-store";
 
   // Components
   import Loader from "../components/Loader.svelte";
@@ -26,7 +26,7 @@
   </div>
 
   <!-- Viviendas -->
-  {#await getItems({ base: name, records: $viviendasDisponibles })}
+  {#await getItems({ base: name, records: $availableViviendas })}
     <Loader />
   {:then viviendas}
     <Viviendas {name} {viviendas} on:select />

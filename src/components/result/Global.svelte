@@ -3,7 +3,11 @@
   import { createEventDispatcher } from "svelte";
 
   // Store
-  import { selectedStore, currentStep } from "../../msf-store";
+  import {
+    selectedFraccionamientos,
+    selectedViviendas,
+    currentStep
+  } from "../../msf-store";
 
   // Exports
   export let name;
@@ -20,15 +24,23 @@
 </script>
 
 <div class="msf-result-global" on:click={editSelected}>
-  <!-- Icon -->
-  <div class="msf-result-global-icon w-embed">
-    {#if name === 'Fraccionamientos'}
-      <FraccionamientoIcon />
-    {:else if name === 'Viviendas'}
-      <ViviendaIcon />
-    {/if}
-  </div>
 
-  <!-- Name -->
-  <div class="msf-result-global-name">{$selectedStore[name]}</div>
+  {#if name === 'Fraccionamientos'}
+    <!-- Icon -->
+    <div class="msf-result-global-icon w-embed">
+      <FraccionamientoIcon />
+    </div>
+
+    <!-- Name -->
+    <div class="msf-result-global-name">{$selectedFraccionamientos}</div>
+  {:else if name === 'Viviendas'}
+    <!-- Icon -->
+    <div class="msf-result-global-icon w-embed">
+      <ViviendaIcon />
+    </div>
+
+    <!-- Name -->
+    <div class="msf-result-global-name">{$selectedViviendas}</div>
+  {/if}
+
 </div>

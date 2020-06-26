@@ -3,7 +3,7 @@
   import { createEventDispatcher } from "svelte";
 
   // Stores
-  import { selectedStore } from "../msf-store";
+  import { selectedFraccionamientos } from "../msf-store";
 
   // Exports
   export let name, fraccionamientos;
@@ -14,10 +14,10 @@
 
 <div class="msf-fraccionamientos">
 
-  {#each fraccionamientos as fraccionamiento, index (fraccionamiento.id)}
+  {#each fraccionamientos as fraccionamiento (fraccionamiento.id)}
     <label
       class="msf-fraccionamiento w-radio"
-      class:active={$selectedStore[name] === fraccionamiento.fields['Nombre']}>
+      class:active={$selectedFraccionamientos === fraccionamiento.fields['Nombre']}>
 
       <input
         type="radio"
@@ -27,8 +27,9 @@
         value={fraccionamiento.fields['Nombre']}
         required="required"
         class="w-form-formradioinput msf-hidden w-radio-input"
+        bind:group={$selectedFraccionamientos}
         on:input={() => {
-          dispatch('select', { data: fraccionamiento, key: name });
+          dispatch('select', { key: name, data: fraccionamiento });
         }} />
 
       <img

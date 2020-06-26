@@ -3,7 +3,12 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { selectedStore, currentStep } from "../msf-store";
+  import {
+    selectedFraccionamientos,
+    selectedViviendas,
+    selectedAtributos,
+    currentStep
+  } from "../msf-store";
 
   // Components
   import Global from "../components/result/Global.svelte";
@@ -12,16 +17,16 @@
   import Form from "../components/result/Form.svelte";
 
   // Variables
-  $: total = calculateTotal($selectedStore);
+  $: total = calculateTotal($selectedAtributos);
   $: impuestos = total * 0.2;
-  $: atributos = Object.keys($selectedStore["Atributos"]);
+  $: atributos = Object.keys($selectedAtributos);
 
   // Functions
   function calculateTotal(store) {
     let sum = 0;
 
-    for (const atributo in store["Atributos"]) {
-      sum += store["Atributos"][atributo]["Precio"];
+    for (const atributo in store) {
+      sum += store[atributo]["Precio"];
     }
 
     return sum;

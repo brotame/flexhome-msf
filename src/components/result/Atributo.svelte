@@ -4,7 +4,7 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { selectedStore, currentStep } from "../../msf-store";
+  import { selectedAtributos, currentStep } from "../../msf-store";
 
   // Exports
   export let atributo;
@@ -19,7 +19,7 @@
   }
 
   function deleteSelected() {
-    selectedStore.deleteAtributo(atributo);
+    selectedAtributos.delete(atributo);
   }
 </script>
 
@@ -27,12 +27,12 @@
   <!-- Name -->
   <div class="msf-result-atributo-name">
     <strong>{atributo}:</strong>
-    {$selectedStore['Atributos'][atributo]['Nombre']}
+    {$selectedAtributos[atributo]['Nombre']}
   </div>
 
   <!-- Price  -->
   <div class="msf-result-atributo-price">
-    $ {$selectedStore['Atributos'][atributo]['Precio']}
+    $ {$selectedAtributos[atributo]['Precio']}
   </div>
 
   <!-- Controls -->

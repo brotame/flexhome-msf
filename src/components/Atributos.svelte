@@ -3,7 +3,7 @@
   import { createEventDispatcher } from "svelte";
 
   // Stores
-  import { selectedStore } from "../msf-store";
+  import { selectedAtributos } from "../msf-store";
 
   // Exports
   export let name, atributos;
@@ -29,14 +29,14 @@
   getTipos();
 </script>
 
-{#each tipos as tipo, index}
+{#each tipos as tipo, index (tipo)}
   <div class="msf-atributos-wrap" clas:last={index === tipos.length - 1}>
 
     <h3>{tipo.nombre}</h3>
 
     <div class="msf-atributos">
 
-      {#each tipo.atributos as atributo}
+      {#each tipo.atributos as atributo (atributo.id)}
         <label
           class="msf-atributo w-radio"
           class:active={tipo.selected === atributo.fields['Nombre']}>
@@ -50,19 +50,31 @@
             class="w-form-formradioinput msf-hidden w-radio-input"
             bind:group={tipo.selected}
             on:input={() => {
-              dispatch('select', { data: atributo, key: name });
+              dispatch('select', { key: name, data: atributo });
             }} />
 
+          <!-- Imagen -->
           <img
             src={atributo.fields['Renders'][0].thumbnails.large.url}
             alt={atributo.fields['Nombre']}
             class="msf-atributo-image" />
 
-          <span for={atributo.id} class="msf-atributo-label w-form-label">
-            {atributo.fields['Nombre']}
-          </span>
+          <!-- Info -->
+          <div class="msf-atributo-info">
+            <!-- Nombre -->
+            <div for={atributo.id} class="msf-atributo-name">
+              {atributo.fields['Nombre']}
+            </div>
 
-          <div class="msf-atributo-price">${atributo.fields['Precio']}</div>
+            <!-- Descripcion -->
+            <p class="msf-atributo-description">
+              {atributo.fields['Descripcion']}
+            </p>
+
+            <!-- Precio -->
+            <div class="msf-atributo-price">${atributo.fields['Precio']}</div>
+          </div>
+
         </label>
       {/each}
     </div>

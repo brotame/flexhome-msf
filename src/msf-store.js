@@ -4,8 +4,8 @@ import { writable } from 'svelte/store';
 export const currentStep = writable(1);
 
 // Available Items
-export const viviendasDisponibles = writable([]);
-export const atributosDisponibles = writable([]);
+export const availableViviendas = writable([]);
+export const availableAtributos = writable([]);
 
 // Selected Store
 const selected = writable({});
@@ -39,4 +39,36 @@ export const selectedStore = {
   },
 };
 
+export const selectedFraccionamientos = writable();
+export const selectedViviendas = writable();
+const selectedAtributesStore = writable({});
+
+export const selectedAtributos = {
+  subscribe: selectedAtributosStore.subscribe,
+  set: selectedAtributesStore.set,
+  modify: (data) => {
+    selectedAtributosStore.update((items) => {
+      const atributos = {
+        ...items,
+        [data.fields['Tipo']]: data.fields,
+      };
+
+      return { ...atributos };
+    });
+  },
+  delete: (key) => {
+    selectedAtributosStore.update((items) => {
+      delete items[key];
+      return items;
+    });
+  },
+};
+
 export const fetchError = writable(false);
+
+/* 
+selectedAtributos = [
+  tipo: 'Flex Room',
+  data: {...}
+]
+*/

@@ -14,9 +14,11 @@
   // Stores
   import {
     currentStep,
-    selectedStore,
-    viviendasDisponibles,
-    atributosDisponibles
+    selectedFraccionamientos,
+    selectedViviendas,
+    selectedAtributos,
+    availableViviendas,
+    availableAtributos
   } from "./msf-store";
 
   // Variables
@@ -31,7 +33,9 @@
 
   // Reactive
   $: console.log($currentStep);
-  $: console.log($selectedStore);
+  $: console.log($selectedFraccionamientos);
+  $: console.log($selectedViviendas);
+  $: console.log($selectedAtributos);
 
   // Functions
   function checkInputs() {
@@ -63,28 +67,23 @@
     checkInputs();
 
     // Guardar item seleccionado
-    if (key === "Atributos") {
-      selectedStore.modifyAtributo(data);
-      return;
-    } else {
-      selectedStore.modify(key, data.fields["Nombre"]);
-    }
+    if (key === "Atributos") selectedAtributos.modify(data);
 
     if (key === "Fraccionamientos") {
       // Guardar viviendas disponibles
-      $viviendasDisponibles = data.fields["Viviendas"];
+      $availableViviendas = data.fields["Viviendas"];
 
       // Borrar viviendas y atributos seleccionados
-      selectedStore.delete("Viviendas");
-      selectedStore.delete("Atributos");
+      $selectedViviendas = null;
+      $selectedAtributos = {};
     }
 
     if (key === "Viviendas") {
       // Guardar atributos disponibles
-      $atributosDisponibles = data.fields["Atributos"];
+      $availableAtributos = data.fields["Atributos"];
 
       // Borrar viviendas y atributos seleccionados
-      selectedStore.delete("Atributos");
+      $selectedAtributos = {};
     }
   }
 </script>
