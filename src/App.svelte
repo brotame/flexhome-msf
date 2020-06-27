@@ -14,11 +14,13 @@
   // Stores
   import {
     currentStep,
+    currentTipo,
     selectedFraccionamientos,
     selectedViviendas,
     selectedAtributos,
     availableViviendas,
-    availableAtributos
+    availableAtributos,
+    availableTipos
   } from "./msf-store";
 
   // Variables
@@ -30,6 +32,10 @@
     "Personaliza",
     "Resultado"
   ];
+
+  // Reactive
+  $: console.log($currentStep);
+  $: console.log($currentTipo);
 
   // Functions
   function checkInputs() {
@@ -45,13 +51,16 @@
   }
 
   function nextStep() {
-    if (checkInputs()) {
-      $currentStep += 1;
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
+    if (!checkInputs()) return;
+
+    if ($currentStep === 4 && $currentTipo < $availableTipos.length)
+      $currentTipo += 1;
+    else $currentStep += 1;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
   function handleInput(e) {

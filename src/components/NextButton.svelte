@@ -3,7 +3,12 @@
   import { createEventDispatcher } from "svelte";
 
   // Stores
-  import { currentStep, fetchError } from "../msf-store";
+  import {
+    currentStep,
+    currentTipo,
+    availableTipos,
+    fetchError
+  } from "../msf-store";
 
   // Exports
   export let steps, missingInputs;
@@ -16,7 +21,11 @@
   else if ($currentStep === 1) buttonText = "Calcular precio";
   else if ($currentStep > 1 && $currentStep < steps.length - 1)
     buttonText = "Siguiente";
-  else if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
+  else if (
+    $currentStep === steps.length - 1 &&
+    $currentTipo === $availableTipos.length
+  )
+    buttonText = "Ver Resumen";
   else if ($currentStep === steps.length) buttonText = "Enviar";
   $: if ($fetchError) buttonText = "Volver a empezar";
 

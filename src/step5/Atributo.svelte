@@ -3,7 +3,12 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { selectedAtributos, currentStep } from "../msf-store";
+  import {
+    selectedAtributos,
+    currentStep,
+    currentTipo,
+    availableTipos
+  } from "../msf-store";
 
   // Exports
   export let atributo;
@@ -15,6 +20,8 @@
   // Functions
   function editSelected() {
     $currentStep = 4;
+    $currentTipo =
+      $availableTipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]) + 1;
   }
 
   function deleteSelected() {

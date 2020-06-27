@@ -4,9 +4,10 @@ import { writable } from 'svelte/store';
 export const currentStep = writable(1);
 export const currentTipo = writable(1);
 
-// Available Itemsc Stores
+// Available Items Stores
 export const availableViviendas = writable([]);
 export const availableAtributos = writable([]);
+export const availableTipos = writable([]);
 
 // Selected Stores
 export const selectedFraccionamientos = writable();

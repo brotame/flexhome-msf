@@ -1,6 +1,6 @@
 <script>
   // Stores
-  import { currentStep } from "../msf-store";
+  import { currentStep, currentTipo } from "../msf-store";
 
   // Exports
   export let steps;
@@ -10,7 +10,10 @@
 
   // Functions
   function handleClick(index) {
-    if (index + 1 < $currentStep) $currentStep = index + 1;
+    if (index + 1 < $currentStep) {
+      $currentStep = index + 1;
+      $currentTipo = 1;
+    }
   }
 </script>
 

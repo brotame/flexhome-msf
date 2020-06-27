@@ -6,7 +6,8 @@
   import {
     selectedFraccionamientos,
     selectedViviendas,
-    currentStep
+    currentStep,
+    currentTipo
   } from "../msf-store";
 
   // Exports
@@ -20,6 +21,7 @@
   function editSelected() {
     if (name === "Fraccionamientos") $currentStep = 2;
     if (name === "Viviendas") $currentStep = 3;
+    $currentTipo = 1;
   }
 </script>
 

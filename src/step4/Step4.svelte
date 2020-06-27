@@ -19,12 +19,6 @@
 
 <div class="msf-content" in:fade={{ duration: 250 }}>
 
-  <!-- Header -->
-  <div class="msf-header">
-    <h2>Personaliza los atributos</h2>
-    <p>Esto es un subtítulo</p>
-  </div>
-
   <!-- Atributos -->
   {#await getItems({ table: name, records: $availableAtributos })}
     <Loader />
