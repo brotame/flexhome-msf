@@ -14,17 +14,17 @@
 
 <div class="msf-fraccionamientos">
 
-  {#each fraccionamientos as fraccionamiento (fraccionamiento.id)}
+  {#each fraccionamientos as fraccionamiento}
     <label
       class="msf-fraccionamiento w-radio"
-      class:active={$selectedFraccionamientos === fraccionamiento.fields['Nombre']}>
+      class:active={$selectedFraccionamientos === fraccionamiento['Nombre']}>
 
       <input
         type="radio"
         {name}
         data-name={name}
-        id={fraccionamiento.id}
-        value={fraccionamiento.fields['Nombre']}
+        id={fraccionamiento['Nombre']}
+        value={fraccionamiento['Nombre']}
         required="required"
         class="w-form-formradioinput msf-hidden w-radio-input"
         bind:group={$selectedFraccionamientos}
@@ -33,14 +33,14 @@
         }} />
 
       <img
-        src={fraccionamiento.fields['Renders'][0].thumbnails.large.url}
-        alt={fraccionamiento.fields['Nombre']}
+        src={fraccionamiento['Renders'][0].thumbnails.large.url}
+        alt={fraccionamiento['Nombre']}
         class="msf-fraccionamiento-image" />
 
       <span
-        for={fraccionamiento.id}
+        for={fraccionamiento['Nombre']}
         class="msf-fraccionamiento-label w-form-label">
-        {fraccionamiento.fields['Nombre']}
+        {fraccionamiento['Nombre']}
       </span>
 
     </label>

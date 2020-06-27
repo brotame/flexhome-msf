@@ -10,8 +10,8 @@
 
   // Components
   import Loader from "../components/Loader.svelte";
+  import Viviendas from "./Viviendas.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
-  import Viviendas from "../components/Viviendas.svelte";
 
   // Exports
   export let name;
@@ -26,7 +26,7 @@
   </div>
 
   <!-- Viviendas -->
-  {#await getItems({ base: name, records: $availableViviendas })}
+  {#await getItems({ table: name, records: $availableViviendas })}
     <Loader />
   {:then viviendas}
     <Viviendas {name} {viviendas} on:select />

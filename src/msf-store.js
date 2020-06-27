@@ -1,74 +1,39 @@
 import { writable } from 'svelte/store';
 
-// Current Step Store
+// Current Step & Tipo Store
 export const currentStep = writable(1);
+export const currentTipo = writable(1);
 
-// Available Items
+// Available Itemsc Stores
 export const availableViviendas = writable([]);
 export const availableAtributos = writable([]);
 
-// Selected Store
-const selected = writable({});
-
-export const selectedStore = {
-  subscribe: selected.subscribe,
-  modify: (key, data) => {
-    selected.update((items) => ({ ...items, [key]: data }));
-  },
-  delete: (key) => {
-    selected.update((items) => {
-      delete items[key];
-      return items;
-    });
-  },
-  modifyAtributo: (data) => {
-    selected.update((items) => {
-      const atributos = {
-        ...items['Atributos'],
-        [data.fields['Tipo']]: data.fields,
-      };
-
-      return { ...items, ['Atributos']: atributos };
-    });
-  },
-  deleteAtributo: (key) => {
-    selected.update((items) => {
-      delete items['Atributos'][key];
-      return items;
-    });
-  },
-};
-
+// Selected Stores
 export const selectedFraccionamientos = writable();
 export const selectedViviendas = writable();
-const selectedAtributesStore = writable({});
+
+const selectedAtributosStore = writable([]);
 
 export const selectedAtributos = {
   subscribe: selectedAtributosStore.subscribe,
-  set: selectedAtributesStore.set,
+  set: selectedAtributosStore.set,
   modify: (data) => {
     selectedAtributosStore.update((items) => {
-      const atributos = {
-        ...items,
-        [data.fields['Tipo']]: data.fields,
-      };
+      console.log(items);
+      const index = items.findIndex((item) => item['Tipo'] === data['Tipo']);
 
-      return { ...atributos };
-    });
-  },
-  delete: (key) => {
-    selectedAtributosStore.update((items) => {
-      delete items[key];
+      if (index >= 0) items[index] = data;
+      else items.push(data);
+
       return items;
     });
   },
+  delete: (tipo) => {
+    selectedAtributosStore.update((items) =>
+      items.filter((item) => item['Tipo'] !== tipo)
+    );
+  },
 };
 
+// Error while fetching store
 export const fetchError = writable(false);
-
-/* 
-selectedAtributos = [
-  tipo: 'Flex Room',
-  data: {...}
-]
-*/

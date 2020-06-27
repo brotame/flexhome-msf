@@ -5,13 +5,13 @@ export async function getFraccionamientos() {
   const fraccionamientos = await response.json();
 
   if (response.ok) {
-    return fraccionamientos;
+    return getFields(fraccionamientos);
   } else {
     throw new Error();
   }
 }
 
-export async function getItems({ base, records }) {
+export async function getItems({ table, records }) {
   if (!records) return false;
 
   const url = 'https://enm0zl4qoisdenh.m.pipedream.net';
@@ -20,7 +20,7 @@ export async function getItems({ base, records }) {
   headers.append('Content-Type', 'application/json');
 
   const body = {
-    base: base,
+    table: table,
     records: records,
   };
 
@@ -35,8 +35,12 @@ export async function getItems({ base, records }) {
   const items = await response.json();
 
   if (response.ok) {
-    return items;
+    return getFields(items);
   } else {
     throw new Error();
   }
+}
+
+function getFields(items) {
+  return items.map((item) => item.fields);
 }

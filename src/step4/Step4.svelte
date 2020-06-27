@@ -1,14 +1,17 @@
 <script>
   // Airtable
-  import { getFraccionamientos } from "../airtable";
+  import { getItems } from "../airtable";
 
   // Svelte
   import { fade } from "svelte/transition";
 
+  // Stores
+  import { availableAtributos } from "../msf-store";
+
   // Components
   import Loader from "../components/Loader.svelte";
+  import Atributos from "./Atributos.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
-  import Fraccionamientos from "../components/Fraccionamientos.svelte";
 
   // Exports
   export let name;
@@ -18,15 +21,15 @@
 
   <!-- Header -->
   <div class="msf-header">
-    <h2>Selecciona el fraccionamiento</h2>
+    <h2>Personaliza los atributos</h2>
     <p>Esto es un subtítulo</p>
   </div>
 
-  <!-- Fraccionamientos -->
-  {#await getFraccionamientos()}
+  <!-- Atributos -->
+  {#await getItems({ table: name, records: $availableAtributos })}
     <Loader />
-  {:then fraccionamientos}
-    <Fraccionamientos {name} {fraccionamientos} on:select />
+  {:then atributos}
+    <Atributos {name} {atributos} on:select />
   {:catch error}
     <ErrorMessage />
   {/await}

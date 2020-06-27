@@ -1,17 +1,16 @@
 <script>
   // Svelte
-  import { createEventDispatcher } from "svelte";
   import { fade } from "svelte/transition";
 
   // Stores
-  import { selectedAtributos, currentStep } from "../../msf-store";
+  import { selectedAtributos, currentStep } from "../msf-store";
 
   // Exports
   export let atributo;
 
   // Icons
-  import EditIcon from "../../icons/edit-icon.svg";
-  import TrashIcon from "../../icons/trash-icon.svg";
+  import EditIcon from "../icons/edit-icon.svg";
+  import TrashIcon from "../icons/trash-icon.svg";
 
   // Functions
   function editSelected() {
@@ -19,21 +18,19 @@
   }
 
   function deleteSelected() {
-    selectedAtributos.delete(atributo);
+    selectedAtributos.delete(atributo["Tipo"]);
   }
 </script>
 
 <div class="msf-result-atributo" transition:fade={{ duration: 250 }}>
   <!-- Name -->
   <div class="msf-result-atributo-name">
-    <strong>{atributo}:</strong>
-    {$selectedAtributos[atributo]['Nombre']}
+    <strong>{atributo['Tipo']}:</strong>
+    {atributo['Nombre']}
   </div>
 
   <!-- Price  -->
-  <div class="msf-result-atributo-price">
-    $ {$selectedAtributos[atributo]['Precio']}
-  </div>
+  <div class="msf-result-atributo-price">$ {atributo['Precio']}</div>
 
   <!-- Controls -->
   <div class="msf-result-atributo-controls">

@@ -11,26 +11,17 @@
   } from "../msf-store";
 
   // Components
-  import Global from "../components/result/Global.svelte";
-  import Atributo from "../components/result/Atributo.svelte";
-  import Extra from "../components/result/Extra.svelte";
-  import Form from "../components/result/Form.svelte";
+  import Global from "./Global.svelte";
+  import Atributo from "./Atributo.svelte";
+  import Extra from "./Extra.svelte";
+  import Form from "./Form.svelte";
 
   // Variables
-  $: total = calculateTotal($selectedAtributos);
+  // $: total = calculateTotal($selectedAtributos);
+  $: total = $selectedAtributos.reduce((acc, cur) => {
+    return acc + cur["Precio"];
+  }, 0);
   $: impuestos = total * 0.2;
-  $: atributos = Object.keys($selectedAtributos);
-
-  // Functions
-  function calculateTotal(store) {
-    let sum = 0;
-
-    for (const atributo in store) {
-      sum += store[atributo]["Precio"];
-    }
-
-    return sum;
-  }
 </script>
 
 <div class="msf-content" in:fade={{ duration: 250 }}>
@@ -52,7 +43,7 @@
     <!-- Atributos -->
     <div class="msf-result-atributos">
 
-      {#each atributos as atributo (atributo)}
+      {#each $selectedAtributos as atributo (atributo)}
         <Atributo {atributo} />
       {/each}
 

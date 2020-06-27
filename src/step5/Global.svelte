@@ -7,14 +7,14 @@
     selectedFraccionamientos,
     selectedViviendas,
     currentStep
-  } from "../../msf-store";
+  } from "../msf-store";
 
   // Exports
   export let name;
 
   // Icons
-  import FraccionamientoIcon from "../../icons/fraccionamiento-icon.svg";
-  import ViviendaIcon from "../../icons/vivienda-icon.svg";
+  import FraccionamientoIcon from "../icons/fraccionamiento-icon.svg";
+  import ViviendaIcon from "../icons/vivienda-icon.svg";
 
   // Functions
   function editSelected() {
