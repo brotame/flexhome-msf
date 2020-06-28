@@ -31,9 +31,9 @@ export const fetchedTipos = writable([]);
 export const fetchError = writable(false);
 
 // Selected Stores
-export const selectedFraccionamientos = writable();
+export const selectedFraccionamiento = writable();
 
-export const selectedViviendas = writable();
+export const selectedVivienda = writable();
 
 const selectedAtributosStore = writable([]);
 

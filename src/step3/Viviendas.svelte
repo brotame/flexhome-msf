@@ -3,7 +3,7 @@
   import { createEventDispatcher, onMount } from "svelte";
 
   // Stores
-  import { selectedViviendas } from "../msf-stores";
+  import { selectedVivienda } from "../msf-stores";
 
   // Exports
   export let name, viviendas;
@@ -17,7 +17,7 @@
   {#each viviendas as vivienda}
     <label
       class="msf-vivienda active w-radio"
-      class:active={$selectedViviendas === vivienda['Nombre']}>
+      class:active={$selectedVivienda === vivienda['Nombre']}>
 
       <input
         type="radio"
@@ -27,7 +27,7 @@
         value={vivienda['Nombre']}
         required="required"
         class="w-form-formradioinput msf-hidden w-radio-input"
-        bind:group={$selectedViviendas}
+        bind:group={$selectedVivienda}
         on:input={() => {
           dispatch('select', { key: name, data: vivienda });
         }} />

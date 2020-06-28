@@ -1,6 +1,15 @@
+<script>
+  import {
+    selectedFraccionamiento,
+    selectedVivienda,
+    selectedAtributos
+  } from "../msf-stores";
+</script>
+
 <div class="msf-contact">
   <h2 class="msf-contact-heading">Envía el resumen</h2>
   <div class="msf-contact-form">
+    <!-- Contact Inputs -->
     <input
       type="text"
       class="msf-text-input w-input"
@@ -26,5 +35,28 @@
       name="Pregunta"
       data-name="Pregunta"
       class="msf-textarea-input w-input" />
+
+    <!-- Fraccionamiento -->
+    <input
+      id="fraccionamiento"
+      name="Fraccionamiento"
+      type="hidden"
+      value={$selectedFraccionamiento} />
+
+    <!-- Vivienda -->
+    <input
+      id="vivienda"
+      name="Vivienda"
+      type="hidden"
+      value={$selectedVivienda} />
+
+    <!-- Atributos -->
+    {#each $selectedAtributos as atributo, index}
+      <input
+        id="atributo-{index}"
+        name={atributo['Tipo']}
+        type="hidden"
+        value={atributo['Nombre']} />
+    {/each}
   </div>
 </div>

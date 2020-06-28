@@ -16,8 +16,8 @@
     currentStep,
     currentTipo,
     editMode,
-    selectedFraccionamientos,
-    selectedViviendas,
+    selectedFraccionamiento,
+    selectedVivienda,
     selectedAtributos,
     availableViviendas,
     availableAtributos,
@@ -78,7 +78,7 @@
       $availableViviendas = data["Viviendas"];
 
       // Borrar viviendas y atributos seleccionados
-      $selectedViviendas = null;
+      $selectedVivienda = null;
       $selectedAtributos = [];
     }
 

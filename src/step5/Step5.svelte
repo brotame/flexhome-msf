@@ -4,8 +4,8 @@
 
   // Stores
   import {
-    selectedFraccionamientos,
-    selectedViviendas,
+    selectedFraccionamiento,
+    selectedVivienda,
     selectedAtributos,
     currentStep
   } from "../msf-stores";

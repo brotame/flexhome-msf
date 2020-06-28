@@ -4,8 +4,8 @@
 
   // Store
   import {
-    selectedFraccionamientos,
-    selectedViviendas,
+    selectedFraccionamiento,
+    selectedVivienda,
     currentStep,
     currentTipo
   } from "../msf-stores";
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Name -->
-    <div class="msf-result-global-name">{$selectedFraccionamientos}</div>
+    <div class="msf-result-global-name">{$selectedFraccionamiento}</div>
   {:else if name === 'Viviendas'}
     <!-- Icon -->
     <div class="msf-result-global-icon w-embed">
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Name -->
-    <div class="msf-result-global-name">{$selectedViviendas}</div>
+    <div class="msf-result-global-name">{$selectedVivienda}</div>
   {/if}
 
 </div>
