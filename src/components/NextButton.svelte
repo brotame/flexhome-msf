@@ -6,9 +6,10 @@
   import {
     currentStep,
     currentTipo,
-    availableTipos,
+    editMode,
+    fetchedTipos,
     fetchError
-  } from "../msf-store";
+  } from "../msf-stores";
 
   // Exports
   export let steps, missingInputs;
@@ -21,12 +22,12 @@
   else if ($currentStep === 1) buttonText = "Calcular precio";
   else if ($currentStep > 1 && $currentStep < steps.length - 1)
     buttonText = "Siguiente";
-  else if (
-    $currentStep === steps.length - 1 &&
-    $currentTipo === $availableTipos.length
-  )
-    buttonText = "Ver Resumen";
-  else if ($currentStep === steps.length) buttonText = "Enviar";
+  else if ($currentTipo === $fetchedTipos.length) {
+    if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
+    else if ($currentStep === steps.length) buttonText = "Enviar";
+  }
+  buttonText = "Enviar";
+  $: if ($editMode) buttonText = "Modificar";
   $: if ($fetchError) buttonText = "Volver a empezar";
 
   // Functions

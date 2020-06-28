@@ -1,16 +1,38 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
+import { getFraccionamientos, getItems } from './airtable';
 
-// Current Step & Tipo Store
+// Global Stores
 export const currentStep = writable(1);
 export const currentTipo = writable(1);
+export const editMode = writable(false);
 
 // Available Items Stores
 export const availableViviendas = writable([]);
 export const availableAtributos = writable([]);
-export const availableTipos = writable([]);
+
+// Fetched Items Stores
+export const fetchedFraccionamientos = writable(getFraccionamientos());
+
+export const fetchedViviendas = derived(
+  availableViviendas,
+  ($availableViviendas) =>
+    getItems({ table: 'Viviendas', records: $availableViviendas })
+);
+
+export const fetchedAtributos = derived(
+  availableAtributos,
+  ($availableAtributos) =>
+    getItems({ table: 'Atributos', records: $availableAtributos })
+);
+
+export const fetchedTipos = writable([]);
+
+// Error while fetching store
+export const fetchError = writable(false);
 
 // Selected Stores
 export const selectedFraccionamientos = writable();
+
 export const selectedViviendas = writable();
 
 const selectedAtributosStore = writable([]);
@@ -20,7 +42,6 @@ export const selectedAtributos = {
   set: selectedAtributosStore.set,
   modify: (data) => {
     selectedAtributosStore.update((items) => {
-      console.log(items);
       const index = items.findIndex((item) => item['Tipo'] === data['Tipo']);
 
       if (index >= 0) items[index] = data;
@@ -35,6 +56,3 @@ export const selectedAtributos = {
     );
   },
 };
-
-// Error while fetching store
-export const fetchError = writable(false);

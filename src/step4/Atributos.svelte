@@ -4,38 +4,31 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { currentTipo, selectedAtributos, availableTipos } from "../msf-store";
+  import { currentTipo, fetchedTipos } from "../msf-stores";
 
   // Exports
   export let name, atributos;
 
-  // Variables
-
   // Reactive
-  $: tipo = $availableTipos[$currentTipo - 1];
+  $: tipo = $fetchedTipos[$currentTipo - 1];
 
   // Functions
   const dispatch = createEventDispatcher();
 
-  function getTipos() {
+  (function getTipos() {
     const tipos = [];
-
     atributos.forEach(atributo => {
       const index = tipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]);
-
       if (index >= 0) tipos[index].atributos.push(atributo);
       else tipos.push({ nombre: atributo["Tipo"], atributos: [atributo] });
     });
-
-    $availableTipos = tipos;
-  }
-
-  getTipos();
+    $fetchedTipos = tipos;
+  })();
 </script>
 
 <!-- Header -->
 <div class="msf-header">
-  <h2>Qué {tipo.nombre} te gustaría tener en tu vivienda?</h2>
+  <h2>Qué {tipo.nombre.toLowerCase()} te gustaría tener en tu vivienda?</h2>
   <p>Desarrollamos diseños teniendo en cuenta sus necesidades únicas.</p>
 </div>
 

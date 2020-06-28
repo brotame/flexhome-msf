@@ -1,6 +1,6 @@
 <script>
   // Stores
-  import { currentStep, currentTipo } from "../msf-store";
+  import { currentStep, currentTipo } from "../msf-stores";
 
   // Exports
   export let steps;

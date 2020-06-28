@@ -1,12 +1,9 @@
 <script>
-  // Airtable
-  import { getItems } from "../airtable";
-
   // Svelte
   import { fade } from "svelte/transition";
 
   // Stores
-  import { availableViviendas } from "../msf-store";
+  import { fetchedViviendas } from "../msf-stores";
 
   // Components
   import Loader from "../components/Loader.svelte";
@@ -26,7 +23,7 @@
   </div>
 
   <!-- Viviendas -->
-  {#await getItems({ table: name, records: $availableViviendas })}
+  {#await $fetchedViviendas}
     <Loader />
   {:then viviendas}
     <Viviendas {name} {viviendas} on:select />

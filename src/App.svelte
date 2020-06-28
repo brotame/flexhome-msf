@@ -15,13 +15,14 @@
   import {
     currentStep,
     currentTipo,
+    editMode,
     selectedFraccionamientos,
     selectedViviendas,
     selectedAtributos,
     availableViviendas,
     availableAtributos,
-    availableTipos
-  } from "./msf-store";
+    fetchedTipos
+  } from "./msf-stores";
 
   // Variables
   let missingInputs;
@@ -32,10 +33,6 @@
     "Personaliza",
     "Resultado"
   ];
-
-  // Reactive
-  $: console.log($currentStep);
-  $: console.log($currentTipo);
 
   // Functions
   function checkInputs() {
@@ -53,7 +50,11 @@
   function nextStep() {
     if (!checkInputs()) return;
 
-    if ($currentStep === 4 && $currentTipo < $availableTipos.length)
+    if ($editMode) {
+      $currentStep = steps.length;
+      $currentTipo = $fetchedTipos.length;
+      $editMode = false;
+    } else if ($currentStep === 4 && $currentTipo < $fetchedTipos.length)
       $currentTipo += 1;
     else $currentStep += 1;
 

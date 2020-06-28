@@ -7,8 +7,9 @@
     selectedAtributos,
     currentStep,
     currentTipo,
-    availableTipos
-  } from "../msf-store";
+    editMode,
+    fetchedTipos
+  } from "../msf-stores";
 
   // Exports
   export let atributo;
@@ -21,7 +22,8 @@
   function editSelected() {
     $currentStep = 4;
     $currentTipo =
-      $availableTipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]) + 1;
+      $fetchedTipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]) + 1;
+    $editMode = true;
   }
 
   function deleteSelected() {

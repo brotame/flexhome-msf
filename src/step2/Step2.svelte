@@ -1,9 +1,9 @@
 <script>
-  // Airtable
-  import { getFraccionamientos } from "../airtable";
-
   // Svelte
   import { fade } from "svelte/transition";
+
+  // Stores
+  import { fetchedFraccionamientos } from "../msf-stores";
 
   // Components
   import Loader from "../components/Loader.svelte";
@@ -23,7 +23,7 @@
   </div>
 
   <!-- Fraccionamientos -->
-  {#await getFraccionamientos()}
+  {#await $fetchedFraccionamientos}
     <Loader />
   {:then fraccionamientos}
     <Fraccionamientos {name} {fraccionamientos} on:select />

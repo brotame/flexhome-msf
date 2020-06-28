@@ -4,11 +4,8 @@ export async function getFraccionamientos() {
   const response = await fetch(url);
   const fraccionamientos = await response.json();
 
-  if (response.ok) {
-    return getFields(fraccionamientos);
-  } else {
-    throw new Error();
-  }
+  if (response.ok) return getFields(fraccionamientos);
+  else throw new Error();
 }
 
 export async function getItems({ table, records }) {
@@ -34,11 +31,8 @@ export async function getItems({ table, records }) {
   const response = await fetch(url, options);
   const items = await response.json();
 
-  if (response.ok) {
-    return getFields(items);
-  } else {
-    throw new Error();
-  }
+  if (response.ok) return getFields(items);
+  else throw new Error();
 }
 
 function getFields(items) {

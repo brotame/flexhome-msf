@@ -3,7 +3,7 @@
   import { createEventDispatcher, onMount } from "svelte";
 
   // Stores
-  import { selectedViviendas } from "../msf-store";
+  import { selectedViviendas } from "../msf-stores";
 
   // Exports
   export let name, viviendas;

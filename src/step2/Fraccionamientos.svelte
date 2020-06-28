@@ -3,7 +3,7 @@
   import { createEventDispatcher } from "svelte";
 
   // Stores
-  import { selectedFraccionamientos } from "../msf-store";
+  import { selectedFraccionamientos } from "../msf-stores";
 
   // Exports
   export let name, fraccionamientos;

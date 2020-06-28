@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { fetchError } from "../msf-store";
+  import { fetchError } from "../msf-stores";
 
   // Functions
   onMount(() => {

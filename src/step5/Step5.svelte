@@ -8,7 +8,7 @@
     selectedViviendas,
     selectedAtributos,
     currentStep
-  } from "../msf-store";
+  } from "../msf-stores";
 
   // Components
   import Global from "./Global.svelte";

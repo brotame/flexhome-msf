@@ -8,7 +8,7 @@
     selectedViviendas,
     currentStep,
     currentTipo
-  } from "../msf-store";
+  } from "../msf-stores";
 
   // Exports
   export let name;
