@@ -32,9 +32,9 @@
   <p>Desarrollamos diseños teniendo en cuenta sus necesidades únicas.</p>
 </div>
 
+<!-- Atributos -->
 <div class="msf-atributos">
-
-  {#each tipo.atributos as atributo, index}
+  {#each tipo.atributos as atributo, index (atributo['Nombre'])}
     <label
       class="msf-atributo w-radio"
       class:active={tipo.selected === atributo['Nombre']}

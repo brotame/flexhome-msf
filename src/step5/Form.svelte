@@ -18,7 +18,7 @@
       data-name="Nombre"
       placeholder="Tu Nombre"
       id="nombre"
-      required="" />
+      required="required" />
     <input
       type="text"
       class="msf-text-input w-input"
@@ -27,7 +27,7 @@
       data-name="Email"
       placeholder="Tu email"
       id="email"
-      required="" />
+      required="required" />
     <textarea
       placeholder="¿Tienes alguna pregunta para nosotros?"
       maxlength="5000"

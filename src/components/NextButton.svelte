@@ -34,6 +34,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
+<!-- Next Button -->
 {#if $fetchError}
   <button
     type="button"

@@ -1,4 +1,7 @@
 <script>
+  // Helpers
+  import { scrollTop } from "../helpers";
+
   // Svelte
   import { fade } from "svelte/transition";
 
@@ -24,6 +27,8 @@
     $currentTipo =
       $fetchedTipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]) + 1;
     $editMode = true;
+
+    scrollTop();
   }
 
   function deleteSelected() {

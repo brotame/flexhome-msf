@@ -1,10 +1,11 @@
 <script>
   // Helpers
-  import { checkRequiredInputs } from "./helpers";
+  import { checkRequiredInputs, scrollTop } from "./helpers";
 
   // Components
   import ProgressBar from "./components/ProgressBar.svelte";
   import NextButton from "./components/NextButton.svelte";
+  import BackButton from "./components/BackButton.svelte";
   import Step1 from "./step1/Step1.svelte";
   import Step2 from "./step2/Step2.svelte";
   import Step3 from "./step3/Step3.svelte";
@@ -47,23 +48,6 @@
     }
   }
 
-  function nextStep() {
-    if (!checkInputs()) return;
-
-    if ($editMode) {
-      $currentStep = steps.length;
-      $currentTipo = $fetchedTipos.length;
-      $editMode = false;
-    } else if ($currentStep === 4 && $currentTipo < $fetchedTipos.length)
-      $currentTipo += 1;
-    else $currentStep += 1;
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-
   function handleInput(e) {
     const { data, key } = e.detail;
 
@@ -90,10 +74,33 @@
       $selectedAtributos = [];
     }
   }
+
+  function nextStep() {
+    if (!checkInputs()) return;
+
+    if ($editMode) {
+      $currentStep = steps.length;
+      $currentTipo = $fetchedTipos.length;
+      $editMode = false;
+    } else if ($currentStep === 4 && $currentTipo < $fetchedTipos.length)
+      $currentTipo += 1;
+    else $currentStep += 1;
+
+    scrollTop();
+  }
+
+  function lastStep() {
+    if ($currentTipo !== 1) $currentTipo -= 1;
+    else $currentStep -= 1;
+
+    scrollTop();
+  }
 </script>
 
+<!-- Barra de progreso y pasos -->
 <ProgressBar {steps} />
 
+<!-- Contenido de los pasos -->
 {#if $currentStep === 1}
   <Step1 />
 {:else if $currentStep === 2}
@@ -106,4 +113,8 @@
   <Step5 />
 {/if}
 
-<NextButton {steps} {missingInputs} on:nextstep={nextStep} />
+<!-- Botones de navegacion -->
+<div class="msf-nav">
+  <BackButton {steps} on:click={lastStep} />
+  <NextButton {steps} {missingInputs} on:nextstep={nextStep} />
+</div>

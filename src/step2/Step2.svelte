@@ -19,7 +19,7 @@
   <!-- Header -->
   <div class="msf-header">
     <h2>Selecciona el fraccionamiento</h2>
-    <p>Esto es un subtítulo</p>
+    <p>¡Tenemos viviendas disponibles en cada uno de ellos!</p>
   </div>
 
   <!-- Fraccionamientos -->

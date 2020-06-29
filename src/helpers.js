@@ -52,3 +52,25 @@ function validateEmail() {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+// Get an element's distance from the top of the page
+function getDistanceFromTop(target) {
+  let location = 0;
+
+  if (target.offsetParent) {
+    do {
+      location += target.offsetTop;
+      target = target.offsetParent;
+    } while (target);
+  }
+
+  return location >= 0 ? location : 0;
+}
+
+export function scrollTop() {
+  const wrap = document.querySelector('.msf-wrap');
+  window.scrollTo({
+    top: getDistanceFromTop(wrap),
+    behavior: 'smooth',
+  });
+}

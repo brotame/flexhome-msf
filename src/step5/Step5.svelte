@@ -21,7 +21,7 @@
   $: total = $selectedAtributos.reduce((acc, cur) => {
     return acc + cur["Precio"];
   }, 0);
-  $: impuestos = total * 0.2;
+  $: impuestos = total * 0.16;
 </script>
 
 <div class="msf-content" in:fade={{ duration: 250 }}>
