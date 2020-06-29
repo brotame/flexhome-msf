@@ -6,6 +6,9 @@
   // Stores
   import { currentTipo, fetchedTipos } from "../msf-stores";
 
+  // Icons
+  import PlusIcon from "../icons/plus-icon.svg";
+
   // Exports
   export let name, atributos;
 
@@ -71,6 +74,14 @@
 
         <!-- Precio -->
         <div class="msf-atributo-price">${atributo['Precio']}</div>
+
+        <!-- Link al CMS -->
+        <a
+          class="msf-atributo-link w-embed"
+          href={atributo['Webflow'] ? atributo['Webflow'] : '#'}
+          target="_blank">
+          <PlusIcon />
+        </a>
       </div>
 
     </label>
