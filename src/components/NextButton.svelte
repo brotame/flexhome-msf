@@ -18,43 +18,45 @@
   let buttonText;
 
   // Reactive
-  $: if (missingInputs) buttonText = "Faltan Campos";
-  else if ($currentStep === 1) buttonText = "Calcular precio";
-  else if ($currentStep > 1 && $currentStep < steps.length - 1)
-    buttonText = "Siguiente";
-  else if ($currentTipo === $fetchedTipos.length) {
-    if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
-    else if ($currentStep === steps.length) buttonText = "Enviar";
-  }
-  buttonText = "Enviar";
   $: if ($editMode) buttonText = "Modificar";
-  $: if ($fetchError) buttonText = "Volver a empezar";
+  else {
+    if ($currentStep === 1) buttonText = "Calcular precio";
+    else if ($currentStep > 1 && $currentStep < steps.length - 1)
+      buttonText = "Siguiente";
+    else if ($currentTipo === $fetchedTipos.length) {
+      if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
+      else if ($currentStep === steps.length) buttonText = "Enviar";
+    }
+  }
+
+  $: console.log(missingInputs);
 
   // Functions
   const dispatch = createEventDispatcher();
 </script>
 
-<!-- Next Button -->
+<!-- Error Fetching Button -->
 {#if $fetchError}
   <button
     type="button"
     class="msf-button w-button alert"
     on:click={() => location.reload()}>
-    {buttonText}
+    Volver a empezar
   </button>
+  <!-- Next Button -->
 {:else if $currentStep < steps.length}
   <button
     type="button"
     class="msf-button w-button"
     class:alert={missingInputs}
     on:click={() => dispatch('nextstep')}>
-    {buttonText}
+    {missingInputs ? 'Faltan Campos' : buttonText}
   </button>
+  <!-- Submit Button -->
 {:else if $currentStep === steps.length}
   <input
     type="submit"
     value="Enviar"
     data-wait="Por favor, espera..."
-    class="msf-button w-button"
-    class:alert={missingInputs} />
+    class="msf-button w-button" />
 {/if}

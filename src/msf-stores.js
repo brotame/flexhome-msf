@@ -30,7 +30,7 @@ export const fetchedTipos = writable([]);
 // Error while fetching store
 export const fetchError = writable(false);
 
-// Selected Stores
+// Selected Inputs Stores
 export const selectedFraccionamiento = writable();
 
 export const selectedVivienda = writable();
