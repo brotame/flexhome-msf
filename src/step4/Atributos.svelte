@@ -31,7 +31,9 @@
 
 <!-- Header -->
 <div class="msf-header">
-  <h2>Qué {tipo.nombre.toLowerCase()} te gustaría tener en tu vivienda?</h2>
+  <h2 class="msf-title">
+    Qué {tipo.nombre.toLowerCase()} te gustaría tener en tu vivienda?
+  </h2>
   <p>Desarrollamos diseños teniendo en cuenta sus necesidades únicas.</p>
 </div>
 

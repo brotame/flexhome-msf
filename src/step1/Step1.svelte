@@ -6,7 +6,7 @@
 <!-- Contenido del Step1 -->
 <div class="msf-content" in:fade={{ duration: 250 }}>
   <div class="msf-header">
-    <h1>¿Cuanto cuesta tu casa perfecta?</h1>
+    <h2 class="msf-main-title">¿Cuanto cuesta tu casa perfecta?</h2>
     <p>
       Calcula el coste de la casa de tus sueños contestando las siguientes
       preguntas simples.
