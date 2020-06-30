@@ -18,16 +18,11 @@
   let buttonText;
 
   // Reactive
-  $: if ($editMode) buttonText = "Modificar";
-  else {
-    if ($currentStep === 1) buttonText = "Calcular precio";
-    else if ($currentStep > 1 && $currentStep < steps.length - 1)
-      buttonText = "Siguiente";
-    else if ($currentTipo === $fetchedTipos.length) {
-      if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
-      else if ($currentStep === steps.length) buttonText = "Enviar";
-    }
-  }
+  $: if ($currentStep === 1) buttonText = "Calcular precio";
+  else if ($currentTipo === $fetchedTipos.length) {
+    if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
+    else if ($currentStep === steps.length) buttonText = "Enviar";
+  } else buttonText = "Siguiente";
 
   $: console.log(missingInputs);
 
@@ -50,7 +45,7 @@
     class="msf-button w-button"
     class:alert={missingInputs}
     on:click={() => dispatch('nextstep')}>
-    {missingInputs ? 'Faltan Campos' : buttonText}
+    {missingInputs ? 'Faltan Campos' : $editMode ? 'Modificar' : buttonText}
   </button>
   <!-- Submit Button -->
 {:else if $currentStep === steps.length}
