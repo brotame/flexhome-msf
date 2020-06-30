@@ -1,3 +1,4 @@
+// Fetch fraccionamientos en Airtable
 export async function getFraccionamientos() {
   const url = 'https://env4d5oc52wdy23.m.pipedream.net';
 
@@ -8,6 +9,7 @@ export async function getFraccionamientos() {
   else throw new Error();
 }
 
+// Fetch viviendas o atributos en Airtable
 export async function getItems({ table, records }) {
   if (!records) return false;
 

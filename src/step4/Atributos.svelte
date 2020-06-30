@@ -37,12 +37,15 @@
 
 <!-- Atributos -->
 <div class="msf-atributos">
+
   {#each tipo.atributos as atributo, index (atributo['Nombre'])}
+    <!-- Label -->
     <label
       class="msf-atributo w-radio"
       class:active={tipo.selected === atributo['Nombre']}
       in:fade={{ duration: 250 }}>
 
+      <!-- Input -->
       <input
         type="radio"
         data-name={tipo.nombre}

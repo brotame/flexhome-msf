@@ -9,7 +9,7 @@
   import BackIcon from "../icons/back-icon.svg";
 </script>
 
-<!-- Back Button -->
+<!-- Back Button, no se muestra ni en el primer ni último Step -->
 {#if $currentStep > 1 && $currentStep < steps.length && !$editMode}
   <div class="msf-back" on:click>
     <div class="msf-back-icon">

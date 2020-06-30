@@ -24,7 +24,9 @@
   $: impuestos = total * 0.16;
 </script>
 
+<!-- Step 5 -->
 <div class="msf-content" in:fade={{ duration: 250 }}>
+
   <!-- Header -->
   <div class="msf-header">
     <h2 class="msf-result-heading">Tu coste estimado</h2>
@@ -36,8 +38,8 @@
 
     <!-- Globales -->
     <div class="msf-result-globals">
-      <Global name="Fraccionamientos" />
-      <Global name="Viviendas" />
+      <Global name="Fraccionamiento" />
+      <Global name="Vivienda" />
     </div>
 
     <!-- Atributos -->

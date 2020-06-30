@@ -24,13 +24,11 @@
     else if ($currentStep === steps.length) buttonText = "Enviar";
   } else buttonText = "Siguiente";
 
-  $: console.log(missingInputs);
-
   // Functions
   const dispatch = createEventDispatcher();
 </script>
 
-<!-- Error Fetching Button -->
+<!-- Error Fetching Button, se muestra cuando hay un error haciendo fetch -->
 {#if $fetchError}
   <button
     type="button"
@@ -38,6 +36,7 @@
     on:click={() => location.reload()}>
     Volver a empezar
   </button>
+
   <!-- Next Button -->
 {:else if $currentStep < steps.length}
   <button
@@ -47,7 +46,8 @@
     on:click={() => dispatch('nextstep')}>
     {missingInputs ? 'Faltan Campos' : $editMode ? 'Modificar' : buttonText}
   </button>
-  <!-- Submit Button -->
+
+  <!-- Submit Button, se muestra en el último paso -->
 {:else if $currentStep === steps.length}
   <input
     type="submit"

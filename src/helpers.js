@@ -1,3 +1,4 @@
+// Revisar si hay inputs requeridos sin completar
 export function checkRequiredInputs() {
   const msf = document.getElementById('msf');
   let filledInputs = 0;
@@ -53,7 +54,7 @@ function validateEmail() {
   return re.test(String(email).toLowerCase());
 }
 
-// Get an element's distance from the top of the page
+// Calcular distancia de un elemento al inicio de la página
 function getDistanceFromTop(target) {
   let location = 0;
 
@@ -67,6 +68,7 @@ function getDistanceFromTop(target) {
   return location >= 0 ? location : 0;
 }
 
+// Scroll hasta la parte superior del formulario
 export function scrollTop() {
   const wrap = document.querySelector('.msf-wrap');
   window.scrollTo({

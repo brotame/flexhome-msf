@@ -6,10 +6,16 @@
   } from "../msf-stores";
 </script>
 
+<!-- Formulario -->
 <div class="msf-contact">
+
+  <!-- Heading -->
   <h2 class="msf-contact-heading">Envía el resumen</h2>
+
+  <!-- Contact Inputs -->
   <div class="msf-contact-form">
-    <!-- Contact Inputs -->
+
+    <!-- Nombre -->
     <input
       type="text"
       class="msf-text-input w-input"
@@ -19,6 +25,8 @@
       placeholder="Tu Nombre"
       id="nombre"
       required="required" />
+
+    <!-- Email -->
     <input
       type="text"
       class="msf-text-input w-input"
@@ -28,6 +36,8 @@
       placeholder="Tu email"
       id="email"
       required="required" />
+
+    <!-- Pregunta -->
     <textarea
       placeholder="¿Tienes alguna pregunta para nosotros?"
       maxlength="5000"
@@ -36,6 +46,7 @@
       data-name="Pregunta"
       class="msf-textarea-input w-input" />
 
+    <!-- Hidden inputs dinámicos según lo que el usuario haya escogido -->
     <!-- Fraccionamiento -->
     <input
       id="fraccionamiento"

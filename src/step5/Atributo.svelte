@@ -37,24 +37,24 @@
 </script>
 
 <div class="msf-result-atributo" transition:fade={{ duration: 250 }}>
-  <!-- Name -->
+  <!-- Nombre -->
   <div class="msf-result-atributo-name">
     <strong>{atributo['Tipo']}:</strong>
     {atributo['Nombre']}
   </div>
 
-  <!-- Price  -->
+  <!-- Precio  -->
   <div class="msf-result-atributo-price">$ {atributo['Precio']}</div>
 
-  <!-- Controls -->
+  <!-- Controles -->
   <div class="msf-result-atributo-controls">
 
-    <!-- Edit -->
+    <!-- Editar -->
     <div class="msf-edit-icon w-embed" on:click={editSelected}>
       <EditIcon />
     </div>
 
-    <!-- Remove -->
+    <!-- Borrar -->
     <div class="msf-remove-icon w-embed" on:click={deleteSelected}>
       <TrashIcon />
     </div>

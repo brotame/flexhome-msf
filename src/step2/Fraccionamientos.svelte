@@ -12,13 +12,16 @@
   const dispatch = createEventDispatcher();
 </script>
 
+<!-- Fraccionamientos -->
 <div class="msf-fraccionamientos">
 
   {#each fraccionamientos as fraccionamiento}
+    <!-- Label -->
     <label
       class="msf-fraccionamiento w-radio"
       class:active={$selectedFraccionamiento === fraccionamiento['Nombre']}>
 
+      <!-- Input -->
       <input
         type="radio"
         {name}
@@ -32,11 +35,13 @@
           dispatch('select', { key: name, data: fraccionamiento });
         }} />
 
+      <!-- Imagen -->
       <img
         src={fraccionamiento['Renders'][0].thumbnails.large.url}
         alt={fraccionamiento['Nombre']}
         class="msf-fraccionamiento-image" />
 
+      <!-- Nombre -->
       <span
         for={fraccionamiento['Nombre']}
         class="msf-fraccionamiento-label w-form-label">

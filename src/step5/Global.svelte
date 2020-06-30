@@ -25,23 +25,27 @@
   }
 </script>
 
+<!-- Global -->
 <div class="msf-result-global" on:click={editSelected}>
 
-  {#if name === 'Fraccionamientos'}
-    <!-- Icon -->
+  <!-- Fraccionamiento -->
+  {#if name === 'Fraccionamiento'}
+    <!-- Icono -->
     <div class="msf-result-global-icon w-embed">
       <FraccionamientoIcon />
     </div>
 
-    <!-- Name -->
+    <!-- Nombre -->
     <div class="msf-result-global-name">{$selectedFraccionamiento}</div>
-  {:else if name === 'Viviendas'}
-    <!-- Icon -->
+
+    <!-- Vivienda -->
+  {:else if name === 'Vivienda'}
+    <!-- Icono -->
     <div class="msf-result-global-icon w-embed">
       <ViviendaIcon />
     </div>
 
-    <!-- Name -->
+    <!-- Nombre -->
     <div class="msf-result-global-name">{$selectedVivienda}</div>
   {/if}
 

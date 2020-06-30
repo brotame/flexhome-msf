@@ -17,7 +17,6 @@
     currentStep,
     currentTipo,
     editMode,
-    selectedFraccionamiento,
     selectedVivienda,
     selectedAtributos,
     availableViviendas,
@@ -37,6 +36,7 @@
 
   // Functions
   function checkInputs() {
+    // Revisar inputs requeridos
     const allFilled = checkRequiredInputs();
 
     if (allFilled) {
@@ -76,8 +76,10 @@
   }
 
   function nextStep() {
+    // Revisar inputs requeridos
     if (!checkInputs()) return;
 
+    // Actuar según estado
     if ($editMode) {
       $currentStep = steps.length;
       $currentTipo = $fetchedTipos.length;
@@ -86,13 +88,16 @@
       $currentTipo += 1;
     else $currentStep += 1;
 
+    // Scroll a la parte superior del formulario
     scrollTop();
   }
 
   function lastStep() {
+    // Volver al paso anterior
     if ($currentTipo !== 1) $currentTipo -= 1;
     else $currentStep -= 1;
 
+    // Scroll a la parte superior del formulario
     scrollTop();
   }
 </script>
