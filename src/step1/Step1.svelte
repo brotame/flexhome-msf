@@ -18,5 +18,5 @@
       </em>
     </p>
   </div>
-  <div class="msf-cta">Empecemos! Esto no te tomará más de 4 minutos...</div>
+  <div class="msf-cta">¡Empecemos! Esto no te tomará más de 4 minutos...</div>
 </div>
