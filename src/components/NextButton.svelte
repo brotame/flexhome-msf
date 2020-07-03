@@ -7,7 +7,7 @@
     currentStep,
     currentTipo,
     editMode,
-    fetchedTipos,
+    numberOfTipos,
     fetchError
   } from "../msf-stores";
 
@@ -19,7 +19,7 @@
 
   // Reactive
   $: if ($currentStep === 1) buttonText = "Calcular precio";
-  else if ($currentTipo === $fetchedTipos.length) {
+  else if ($currentTipo === $numberOfTipos.length) {
     if ($currentStep === steps.length - 1) buttonText = "Ver Resumen";
     else if ($currentStep === steps.length) buttonText = "Enviar";
   } else buttonText = "Siguiente";

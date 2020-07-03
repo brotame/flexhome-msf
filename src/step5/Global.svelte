@@ -19,8 +19,8 @@
 
   // Functions
   function editSelected() {
-    if (name === "Fraccionamientos") $currentStep = 2;
-    if (name === "Viviendas") $currentStep = 3;
+    if (name === "Fraccionamiento") $currentStep = 2;
+    if (name === "Vivienda") $currentStep = 3;
     $currentTipo = 1;
   }
 </script>

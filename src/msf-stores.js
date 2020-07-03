@@ -4,28 +4,59 @@ import { getFraccionamientos, getItems } from './airtable';
 // Global Stores
 export const currentStep = writable(1);
 export const currentTipo = writable(1);
+export const numberOfTipos = writable([]);
 export const editMode = writable(false);
 
 // Available Items Stores
 export const availableViviendas = writable([]);
-export const availableAtributos = writable([]);
+export const availableAtributos = writable({});
 
 // Fetched Items Stores
 export const fetchedFraccionamientos = writable(getFraccionamientos());
 
 export const fetchedViviendas = derived(
   availableViviendas,
-  ($availableViviendas) =>
-    getItems({ table: 'Viviendas', records: $availableViviendas })
+  ($availableViviendas) => {
+    if ($availableViviendas.length > 0)
+      return getItems({
+        table: 'Viviendas',
+        records: $availableViviendas,
+        sort: 'Nombre',
+      });
+  }
 );
 
-export const fetchedAtributos = derived(
+export const fetchedTipos = derived(
   availableAtributos,
-  ($availableAtributos) =>
-    getItems({ table: 'Atributos', records: $availableAtributos })
-);
+  async ($availableAtributos) => {
+    if (Object.keys($availableAtributos).length === 0) return;
 
-export const fetchedTipos = writable([]);
+    const atributos = await getItems({
+      table: 'Atributos',
+      records: $availableAtributos.atributos,
+      sort: 'Nombre',
+    });
+    const tipos = await getItems({
+      table: 'Tipos',
+      records: $availableAtributos.tipos,
+      sort: 'Orden',
+    });
+
+    tipos.forEach((tipo) => {
+      tipo['Atributos'] = tipo['Atributos'].reduce((acc, curr) => {
+        const data = atributos.find((atributo) => atributo.id === curr);
+
+        if (data) acc.push(data);
+
+        return acc;
+      }, []);
+    });
+
+    numberOfTipos.set(tipos.map((tipo) => tipo['Nombre']));
+
+    return tipos;
+  }
+);
 
 // Error while fetching store
 export const fetchError = writable(false);

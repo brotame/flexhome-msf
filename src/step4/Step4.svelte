@@ -3,11 +3,11 @@
   import { fade } from "svelte/transition";
 
   // Stores
-  import { fetchedAtributos } from "../msf-stores";
+  import { fetchedTipos } from "../msf-stores";
 
   // Components
   import Loader from "../components/Loader.svelte";
-  import Atributos from "./Atributos.svelte";
+  import Tipos from "./Tipos.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
 
   // Exports
@@ -17,10 +17,10 @@
 <div class="msf-content" in:fade={{ duration: 250 }}>
 
   <!-- Atributos -->
-  {#await $fetchedAtributos}
+  {#await $fetchedTipos}
     <Loader />
-  {:then atributos}
-    <Atributos {name} {atributos} on:select />
+  {:then tipos}
+    <Tipos {name} {tipos} on:select />
   {:catch error}
     <ErrorMessage />
   {/await}

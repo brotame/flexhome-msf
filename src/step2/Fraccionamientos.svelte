@@ -15,7 +15,7 @@
 <!-- Fraccionamientos -->
 <div class="msf-fraccionamientos">
 
-  {#each fraccionamientos as fraccionamiento}
+  {#each fraccionamientos as fraccionamiento (fraccionamiento.id)}
     <!-- Label -->
     <label
       class="msf-fraccionamiento w-radio"
@@ -26,7 +26,7 @@
         type="radio"
         {name}
         data-name={name}
-        id={fraccionamiento['Nombre']}
+        id={fraccionamiento.id}
         value={fraccionamiento['Nombre']}
         required="required"
         class="w-form-formradioinput msf-hidden w-radio-input"

@@ -15,7 +15,7 @@
 <!-- Viviendas -->
 <div class="msf-viviendas">
 
-  {#each viviendas as vivienda}
+  {#each viviendas as vivienda (vivienda.id)}
     <!-- Label -->
     <label
       class="msf-vivienda active w-radio"
@@ -26,7 +26,7 @@
         type="radio"
         {name}
         data-name={name}
-        id={vivienda['Nombre']}
+        id={vivienda.id}
         value={vivienda['Nombre']}
         required="required"
         class="w-form-formradioinput msf-hidden w-radio-input"

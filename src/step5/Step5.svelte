@@ -45,7 +45,7 @@
     <!-- Atributos -->
     <div class="msf-result-atributos">
 
-      {#each $selectedAtributos as atributo (atributo)}
+      {#each $selectedAtributos as atributo (atributo.id)}
         <Atributo {atributo} />
       {/each}
 

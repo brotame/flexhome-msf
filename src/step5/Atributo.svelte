@@ -11,7 +11,7 @@
     currentStep,
     currentTipo,
     editMode,
-    fetchedTipos
+    numberOfTipos
   } from "../msf-stores";
 
   // Exports
@@ -25,7 +25,7 @@
   function editSelected() {
     $currentStep = 4;
     $currentTipo =
-      $fetchedTipos.findIndex(tipo => tipo.nombre === atributo["Tipo"]) + 1;
+      $numberOfTipos.findIndex(tipo => tipo === atributo["Tipo"]) + 1;
     $editMode = true;
 
     scrollTop();
@@ -36,7 +36,12 @@
   }
 </script>
 
-<div class="msf-result-atributo" transition:fade={{ duration: 250 }}>
+<!-- Atributo -->
+<div
+  class="msf-result-atributo"
+  transition:fade={{ duration: 250 }}
+  on:click={editSelected}>
+
   <!-- Nombre -->
   <div class="msf-result-atributo-name">
     <strong>{atributo['Tipo']}:</strong>
@@ -46,17 +51,10 @@
   <!-- Precio  -->
   <div class="msf-result-atributo-price">$ {atributo['Precio']}</div>
 
-  <!-- Controles -->
-  <div class="msf-result-atributo-controls">
-
-    <!-- Editar -->
-    <div class="msf-edit-icon w-embed" on:click={editSelected}>
-      <EditIcon />
-    </div>
-
-    <!-- Borrar -->
-    <div class="msf-remove-icon w-embed" on:click={deleteSelected}>
-      <TrashIcon />
-    </div>
+  <!-- Borrar -->
+  <div
+    class="msf-remove-icon w-embed"
+    on:click|stopPropagation={deleteSelected}>
+    <TrashIcon />
   </div>
 </div>

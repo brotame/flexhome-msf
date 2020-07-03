@@ -10,7 +10,7 @@ export async function getFraccionamientos() {
 }
 
 // Fetch viviendas o atributos en Airtable
-export async function getItems({ table, records }) {
+export async function getItems({ table, records, sort }) {
   if (!records) return false;
 
   const url = 'https://enm0zl4qoisdenh.m.pipedream.net';
@@ -19,8 +19,9 @@ export async function getItems({ table, records }) {
   headers.append('Content-Type', 'application/json');
 
   const body = {
-    table: table,
-    records: records,
+    table,
+    records,
+    sort,
   };
 
   const options = {
@@ -38,5 +39,8 @@ export async function getItems({ table, records }) {
 }
 
 function getFields(items) {
-  return items.map((item) => item.fields);
+  return items.map((item) => {
+    item.fields.id = item.id;
+    return item.fields;
+  });
 }

@@ -17,11 +17,12 @@
     currentStep,
     currentTipo,
     editMode,
+    selectedFraccionamiento,
     selectedVivienda,
     selectedAtributos,
     availableViviendas,
     availableAtributos,
-    fetchedTipos
+    numberOfTipos
   } from "./msf-stores";
 
   // Variables
@@ -60,6 +61,7 @@
     if (key === "Fraccionamientos") {
       // Guardar viviendas disponibles
       $availableViviendas = data["Viviendas"];
+      $selectedFraccionamiento = data;
 
       // Borrar viviendas y atributos seleccionados
       $selectedVivienda = null;
@@ -67,8 +69,11 @@
     }
 
     if (key === "Viviendas") {
-      // Guardar atributos disponibles
-      $availableAtributos = data["Atributos"];
+      // Guardar atributos y tips disponibles
+      $availableAtributos = {
+        tipos: Array.from(new Set(data["Tipos"])),
+        atributos: data["Atributos"]
+      };
 
       // Borrar viviendas y atributos seleccionados
       $selectedAtributos = [];
@@ -82,9 +87,9 @@
     // Actuar según estado
     if ($editMode) {
       $currentStep = steps.length;
-      $currentTipo = $fetchedTipos.length;
+      $currentTipo = $numberOfTipos.length;
       $editMode = false;
-    } else if ($currentStep === 4 && $currentTipo < $fetchedTipos.length)
+    } else if ($currentStep === 4 && $currentTipo < $numberOfTipos.length)
       $currentTipo += 1;
     else $currentStep += 1;
 
