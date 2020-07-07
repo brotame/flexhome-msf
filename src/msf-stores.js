@@ -34,7 +34,7 @@ export const fetchedTipos = derived(
     const atributos = await getItems({
       table: 'Atributos',
       records: $availableAtributos.atributos,
-      sort: 'Nombre',
+      sort: 'Orden',
     });
     const tipos = await getItems({
       table: 'Tipos',
