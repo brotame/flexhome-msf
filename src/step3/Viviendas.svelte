@@ -10,6 +10,10 @@
 
   // Functions
   const dispatch = createEventDispatcher();
+
+  function deleteExtension(filename) {
+    return filename.replace(/\.[^/.]+$/, "");
+  }
 </script>
 
 <!-- Viviendas -->
@@ -49,7 +53,9 @@
             src={vivienda['Renders'][0].thumbnails.large.url}
             alt="Planta Baja"
             class="msf-vivienda-image" />
-          <div class="msf-vivienda-image-label">Planta Baja</div>
+          <div class="msf-vivienda-image-label">
+            {deleteExtension(vivienda['Renders'][0].filename)}
+          </div>
         </div>
 
         <!-- Planta Alta -->
@@ -58,7 +64,9 @@
             src={vivienda['Renders'][1].thumbnails.large.url}
             alt="Planta Alta"
             class="msf-vivienda-image" />
-          <div class="msf-vivienda-image-label">Planta Alta</div>
+          <div class="msf-vivienda-image-label">
+            {deleteExtension(vivienda['Renders'][1].filename)}
+          </div>
         </div>
 
         <!-- Terraza -->
@@ -67,7 +75,9 @@
             src={vivienda['Renders'][2].thumbnails.large.url}
             alt="Terraza"
             class="msf-vivienda-image" />
-          <div class="msf-vivienda-image-label">Terraza</div>
+          <div class="msf-vivienda-image-label">
+            {deleteExtension(vivienda['Renders'][2].filename)}
+          </div>
         </div>
       </div>
 
