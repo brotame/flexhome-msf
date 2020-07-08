@@ -50,6 +50,8 @@ export const fetchedTipos = derived(
 
         return acc;
       }, []);
+
+      tipo['Atributos'].sort((a, b) => a['Orden'] - b['Orden']);
     });
 
     numberOfTipos.set(tipos.map((tipo) => tipo['Nombre']));
