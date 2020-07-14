@@ -1,6 +1,6 @@
 // Fetch fraccionamientos en Airtable
 export async function getFraccionamientos() {
-  const url = 'https://env4d5oc52wdy23.m.pipedream.net';
+  const url = 'https://enylqojaenrauin.m.pipedream.net';
 
   const response = await fetch(url);
   const fraccionamientos = await response.json();
@@ -13,7 +13,7 @@ export async function getFraccionamientos() {
 export async function getItems({ table, records, sort }) {
   if (!records) return false;
 
-  const url = 'https://enm0zl4qoisdenh.m.pipedream.net';
+  const url = 'https://enkowc0i2uli1k8.m.pipedream.net';
 
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
